@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "No Continue";
+    src: url("../fonts/no_continue.ttf") format("truetype");
+}
+
+.gameHeading {
+    font-family: "No Continue";
+    background: slateblue;
+}
