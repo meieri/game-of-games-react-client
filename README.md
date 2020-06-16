@@ -1,7 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Requirements and Outline
 ## Project Requirements
-https://docs.google.com/document/d/1jRI156IdPbwpjv9eQDhlIh7sF8jMBGV6jbQsDYEHlN0/edit?usp=sharing
+[Game of Games Outline](https://docs.google.com/document/d/1EZEcejj0oLC5dcbhNOAcwCLefapvezCwE0_WYkXPYko/edit)<br/>
+[Project Requirements](https://docs.google.com/document/d/1jRI156IdPbwpjv9eQDhlIh7sF8jMBGV6jbQsDYEHlN0/edit?usp=sharing)
 
 ## Available Scripts
 
