@@ -1,8 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Project Requirements and Outline
-###[Game of Games Outline](https://docs.google.com/document/d/1EZEcejj0oLC5dcbhNOAcwCLefapvezCwE0_WYkXPYko/edit)<br/>
-###[Trello Board where we really get it done](https://trello.com/b/TLPQQL9s/game-of-games)<br/>
+[Game of Games Outline](https://docs.google.com/document/d/1EZEcejj0oLC5dcbhNOAcwCLefapvezCwE0_WYkXPYko/edit)<br/>
+[Trello Board where we really get it done](https://trello.com/b/TLPQQL9s/game-of-games)<br/>
 [Project Requirements](https://docs.google.com/document/d/1jRI156IdPbwpjv9eQDhlIh7sF8jMBGV6jbQsDYEHlN0/edit?usp=sharing)
 
 
