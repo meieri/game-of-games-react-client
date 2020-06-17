@@ -14,7 +14,7 @@ export default class LandingComponent extends React.Component {
                   <div className="media-body">
                     <h5 className="mt-0 media-body-heading">Welcome to the Game of Games!</h5>
                     <br/>
-                    <p>You've found yourself on a website where the goal is to pass the time.
+                    <p>You've found yourself at the home of the Game of Games.
                        We've created a custom, brand new, un-before-heard of game-- based almost entirely off Jeopardy.
                        However, you create the board. And the questions. Sound like fun?
                       <Link style={{color: "white"}}> Let's get started.</Link>

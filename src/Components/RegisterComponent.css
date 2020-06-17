@@ -6,6 +6,16 @@
     color: white;
 }
 
+.signUpHeader {
+    font-family: "No Continue";
+    color: white;
+}
+.registerBtn {
+    font-family: "No Continue";
+    color: white;
+    font-size: 21px;
+}
+
 .form-register {
     width: 100%;
     max-width: 390px;

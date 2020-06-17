@@ -7,7 +7,7 @@ export default class LoginComponent extends React.Component {
       <div className='container signInContainer'>
         <form className="form-signin">
           <div className='d-flex justify-content-center'>
-            <h1 className="h3 mb-3">Log In Here</h1>
+            <h1 className="h3 mb-3 loginHeader">Log In Here</h1>
           </div>
           <input className="form-control usernameField" placeholder="Username"/>
           <input type="password passwordField" className="form-control" placeholder="Password"/>
@@ -16,7 +16,7 @@ export default class LoginComponent extends React.Component {
               <input type="checkbox" value="remember-me"/> Remember me
             </label>
           </div>
-          <button className="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+          <button className="btn btn-lg btn-outline-light btn-block loginBtn" type="submit">Log in</button>
         </form>
       </div>
     )

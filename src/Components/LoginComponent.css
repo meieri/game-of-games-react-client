@@ -2,6 +2,16 @@
     margin-top: 100px;
 }
 
+.loginHeader {
+    font-family: "No Continue";
+    color: white;
+}
+.loginBtn {
+    font-family: "No Continue";
+    color: white;
+    font-size: 21px;
+}
+
 .form-signin {
     width: 100%;
     max-width: 390px;
