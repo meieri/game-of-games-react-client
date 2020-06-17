@@ -8,7 +8,7 @@ export default class RegisterComponent extends React.Component {
     password: ''
   }
 
-  register = () => {
+  register = () =>
     fetch(`http://localhost:8080/api/register`, {
       method: 'POST',
       body: JSON.stringify({username: this.state.username, password: this.state.password}),
@@ -18,8 +18,8 @@ export default class RegisterComponent extends React.Component {
       credentials: "include"
     })
       .then(response => response.json())
-      .then(currentUser => alert(`${currentUser.username} is logged in with ${currentUser.password}`))
-  }
+      .then(currentUser => this.props.history.push('/profile'))
+
 
   render() {
     return (
@@ -33,7 +33,6 @@ export default class RegisterComponent extends React.Component {
           <div className="form-group">
             <label htmlFor="userInput">Create a Username</label>
             <input className="form-control"
-                   type='password'
                    onChange={(e) => this.setState({username: e.target.value})}
                    id="userInput"
                    aria-describedby="userHelp"
@@ -54,13 +53,17 @@ export default class RegisterComponent extends React.Component {
 
           <div className="form-group">
             <label htmlFor="passwordInput1">Confirm your Password</label>
-            <input className="form-control" id="passwordInput1" placeholder="Password"/>
+            <input
+              type='password'
+              className="form-control"
+              id="passwordInput1"
+              placeholder="Password"/>
           </div>
 
 
           <button
             className="btn btn-lg btn-outline-light btn-block registerBtn"
-            type="submit"
+            type="button"
             onClick={() => this.register()}>
             Sign Me Up!
           </button>

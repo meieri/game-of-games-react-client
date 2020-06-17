@@ -10,7 +10,7 @@ export default class LandingComponent extends React.Component {
         <div className='container landing-page'>
           <div className='row'>
               <div className="media">
-                <img className="align-self-start" src={man} alt="Generic man image"/>
+                <img className="align-self-start" src={man} alt="Generic man"/>
                   <div className="media-body">
                     <h5 className="mt-0 media-body-heading">Welcome to the Game of Games!</h5>
                     <br/>

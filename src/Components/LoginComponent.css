@@ -39,3 +39,9 @@
 .passwordField {
     margin-bottom: 10px;
 }
+
+.badLoginText {
+    size: 12px;
+    color: white;
+    border-color: red;
+}
