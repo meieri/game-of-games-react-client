@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Link} from 'react-router-dom'
 import LandingComponent from "./LandingComponent";
 import LoginComponent from "./LoginComponent";
 import './GameOfGames.css'
+import RegisterComponent from "./RegisterComponent";
 
 export default class GameOfGames extends React.Component {
   render() {
@@ -18,7 +19,9 @@ export default class GameOfGames extends React.Component {
               <Link
                 to={'/login'}
                 className='mr-3 barLink'>Log In</Link>
-              <Link className='mr-3 barLink'>Sign Up</Link>
+              <Link
+                to={'/register'}
+                className='mr-3 barLink'>Sign Up</Link>
             </div>
           </div>
           <Route
@@ -29,6 +32,10 @@ export default class GameOfGames extends React.Component {
             path='/login'
             exact={true}
             component={LoginComponent}/>
+          <Route
+            path='/register'
+            exact={true}
+            component={RegisterComponent}/>
         </BrowserRouter>
       </div>
 

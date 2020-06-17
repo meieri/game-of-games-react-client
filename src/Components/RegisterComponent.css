@@ -1,8 +1,12 @@
-.signInContainer {
+.RegisterContainer {
     margin-top: 100px;
 }
 
-.form-signin {
+.userHelp {
+    color: white;
+}
+
+.form-register {
     width: 100%;
     max-width: 390px;
     padding: 15px;
@@ -10,6 +14,7 @@
     border-style: solid;
     border-color: white;
 }
+
 .form-signin .checkbox {
     font-weight: 400;
 }
@@ -26,6 +31,11 @@
 .usernameField {
     margin-bottom: 5px;
 }
-.passwordField {
+
+.passwordField1 {
     margin-bottom: 10px;
+}
+
+.passwordField2 {
+    margin-top: 10px;
 }

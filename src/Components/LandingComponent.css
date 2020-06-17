@@ -19,10 +19,10 @@ body {
 }
 .media-body {
     font-family: Sriracha;
-    font-size:17px
+    font-size:17px;
 }
 
-a {
-    font-family: Sriracha;
-    font-size:17px
+.borderMe {
+    border-style: solid;
+    border-color: white;
 }
