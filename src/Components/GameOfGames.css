@@ -1,9 +1,22 @@
-@font-face {
+.barHeading {
+    font-size: 50px;
     font-family: "No Continue";
-    src: url("../fonts/no_continue.ttf") format("truetype");
+    color: white;
 }
 
-.gameHeading {
+.barHeading:hover {
+    font-size: 50px;
     font-family: "No Continue";
-    background: slateblue;
+    color: white;
+}
+
+.barLink {
+    font-size: 30px;
+    font-family: "No Continue";
+    color: white;
+}
+.barLink:hover {
+    font-size: 30px;
+    font-family: "No Continue";
+    color: white;
 }

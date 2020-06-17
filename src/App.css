@@ -27,3 +27,14 @@
 .App-link {
   color: #61dafb;
 }
+
+@font-face {
+  font-family: "No Continue";
+  src: url("./fonts/no_continue.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Sriracha";
+  src: url("./fonts/Sriracha-Regular.ttf") format("truetype");
+}
+

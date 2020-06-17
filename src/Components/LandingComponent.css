@@ -8,6 +8,21 @@ body {
     );
 }
 
-h1 {
-    color: White;
+.landing-page {
+    margin-top: 150px;
+    margin-left: 300px;
+}
+
+.media-body-heading {
+    font-family: Sriracha;
+    font-size: 32px;
+}
+.media-body {
+    font-family: Sriracha;
+    font-size:17px
+}
+
+a {
+    font-family: Sriracha;
+    font-size:17px
 }
