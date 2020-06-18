@@ -1,0 +1,15 @@
+h1 {
+    font-family: "No Continue";
+    color: white;
+    font-size: 40px;
+}
+
+.profileInfo {
+    border-style: solid;
+    border-color: white;
+}
+
+button {
+    font-family: "No Continue";
+    color: white;
+}

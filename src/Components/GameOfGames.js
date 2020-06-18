@@ -2,9 +2,10 @@ import React from "react";
 import {BrowserRouter, Route, Link} from 'react-router-dom'
 import LandingComponent from "./LandingComponent";
 import LoginComponent from "./LoginComponent";
-import './GameOfGames.css'
 import RegisterComponent from "./RegisterComponent";
 import ProfileComponent from "./ProfileComponent";
+import CreateGameComponent from "./CreateGameComponent";
+import './GameOfGames.css'
 
 export default class GameOfGames extends React.Component {
   render() {
@@ -41,6 +42,10 @@ export default class GameOfGames extends React.Component {
             path='/profile'
             exact={true}
             component={ProfileComponent}/>
+          <Route
+            path='/create'
+            exact={true}
+            component={CreateGameComponent}/>
         </BrowserRouter>
       </div>
 
