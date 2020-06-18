@@ -1,30 +1,21 @@
 import React from "react";
 import './LoginComponent.css'
 import {Link} from "react-router-dom";
+import UserService from "../services/UserService";
+import {connect} from 'react-redux'
 
-export default class LoginComponent extends React.Component {
+class LoginComponent extends React.Component {
+
   state = {
     username: '',
     password:'',
     badLogin: false
   }
 
-  login = () => {
-    fetch("http://localhost:8080/api/login", {
-      body: JSON.stringify({username: this.state.username, password: this.state.password}),
-      headers: {
-        'content-type': 'application/json'
-      },
-      method: 'POST',
-      credentials: "include"
-    }).then(response => response.json())
-      .then(currentUser => {
-        if(currentUser.username !== "BADLOGIN")
-          this.props.history.push('/profile')
-        else {
-          this.setState({ username: '', password: '', badLogin: true})
-        }
-      })
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.badLogin === true) {
+      this.setState({ username: '', password: '', badLogin: true})
+    }
   }
 
   render() {
@@ -64,11 +55,38 @@ export default class LoginComponent extends React.Component {
           <button
             className="btn btn-lg btn-outline-light btn-block loginBtn"
             type='button'
-            onClick={() => this.login()}>
+            onClick={() => this.props.login(this.state.username, this.state.password)}>
             Log In</button>
         </form>
       </div>
     )
   }
 }
+
+
+const mapStateToProps = (state) => ({
+  loggedIn: state.userReducer.loggedIn
+})
+
+const mapDispatchToProps = (dispatch) => ({
+
+  login: (username, password) =>
+    UserService.login(username, password)
+      .then(currentUser => {
+      if(currentUser.username !== "BADLOGIN") {
+        this.props.history.push('/profile')
+        dispatch({
+          type: "LOGIN", username
+        })
+      }
+      else {
+        console.log('failed login')
+        dispatch({
+          type: "FAILED_LOGIN"
+        })
+      }
+    })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent)
 
