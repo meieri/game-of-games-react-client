@@ -1,28 +1,29 @@
 body {
-    background: rgb(114, 162, 192);
-    background: radial-gradient(
-            circle,
-            rgba(114, 162, 192, 1) 0%,
-            rgba(29, 101, 166, 1) 51%,
-            rgba(25, 46, 91, 0.9668242296918768) 100%
-    );
+  background: rgb(114, 162, 192);
+  background: radial-gradient(
+    circle,
+    rgba(114, 162, 192, 1) 0%,
+    rgba(29, 101, 166, 1) 51%,
+    rgba(25, 46, 91, 0.9668242296918768) 100%
+  );
 }
 
 .landing-page {
-    margin-top: 150px;
-    margin-left: 300px;
+  margin-top: 5%;
+  margin-left: 10%;
 }
 
 .media-body-heading {
-    font-family: Sriracha;
-    font-size: 32px;
+  font-family: Sriracha;
+  font-size: 32px;
+  min-width: 20vw;
 }
 .media-body {
-    font-family: Sriracha;
-    font-size:17px;
+  font-family: Sriracha;
+  font-size: 17px;
 }
 
 .borderMe {
-    border-style: solid;
-    border-color: white;
+  border-style: solid;
+  border-color: white;
 }
