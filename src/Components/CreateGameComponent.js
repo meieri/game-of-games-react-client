@@ -6,39 +6,49 @@ import './CreateGameComponent.css'
 export default class CreateGameComponent extends React.Component {
   state = {
     categories: {
-
-      "Pictionary": {
-        "Cool": 500,
-        "Bool": 200
-      },
-
-      "Physical": {},
-      "Art": {},
-      "Trivia": {},
-      "Categories": {}
+      "Pictionary": [],
+      "Physical": [],
+      "Art": [],
+      "Trivia": [],
+      "Categories": []
     },
+
     newCard: {},
+    flipCard: {},
     newCardQuestion: "",
-    newCardValue: "",
+    newCardAnswer: "",
+    newCardValue: "100",
     modal: false
   }
 
-  createGame = () =>
-    alert('hi')
+  createGame = () => {
+    const body = JSON.stringify(this.state.categories)
+    console.log(body)
+    return fetch(`http://localhost:8080/api/game`, {
+      method: 'POST',
+      body: body,
+      credentials: "include",
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+  }
+
 
   render() {
     return (
       <div>
 
         <h1 className='d-flex justify-content-center mb-3 create-game'>
-          <a onClick={() => this.setState({modal:true})}>Create the Game</a>
+          <button className='btn-outline-light btn btn-lg' onClick={() => this.setState({modal: true})}>Create the Game</button>
         </h1>
 
         {this.state.modal &&
         <div className='d-flex justify-content-center mb-3 form-inline'>
           Are you sure?
           <button className='btn btn-outline-light mx-1' onClick={() => this.createGame()}>Yes</button>
-          <button className='btn btn-outline-light mx-1' onClick={() => this.setState({modal:false})}>No</button>
+          <button className='btn btn-outline-light mx-1' onClick={() => this.setState({modal: false})}>No</button>
         </div>
         }
 
@@ -46,15 +56,31 @@ export default class CreateGameComponent extends React.Component {
         <div className='container-fluid game-board'>
           <div className='row d-flex justify-content-center'>
             {Object.keys(this.state.categories).map(category =>
-              <div className='btn col game-col mx-2'>
+              <div
+                key={category}
+                className='btn col game-col mx-2'>
                 <div className='row game-card-cat d-flex justify-content-center align-content-center'>
                   {category}
                 </div>
 
                 {
-                  Object.keys(this.state.categories[category]).map(catValue =>
-                    <div className='row game-card d-flex justify-content-center align-content-center mt-2'>
-                      {catValue}
+                  this.state.categories[category].map(question =>
+                    <div
+                      key={question["question"]}
+                      onClick={() => this.setState({flipCard: question})}
+                      className='row game-card d-flex justify-content-center align-content-center mt-2'>
+
+                      {
+                        this.state.flipCard === question &&
+                          <div>
+                            {question["answer"]}
+                            <div>Value: {question["value"]}</div>
+                          </div>
+                      }
+                      {
+                        this.state.flipCard !== question &&
+                        <div>{question["question"]}</div>
+                      }
                     </div>
                   )
                 }
@@ -66,7 +92,13 @@ export default class CreateGameComponent extends React.Component {
                     <input
                       onChange={(e) => this.setState({newCardQuestion: e.target.value})}
                       placeholder='Question'
-                      className='input-group mx-3 mt-3'/>
+                      className='input-group mx-3 mt-1'/>
+
+                    <input
+                      onChange={(e) => this.setState({newCardAnswer: e.target.value})}
+                      placeholder='Answer'
+                      className='input-group input-group-sm mx-3 mt-1'/>
+
                     <form className='form-inline'>
                       <div className='input-group input-group-sm m-2'>
                         <div className="input-group-prepend">
@@ -88,19 +120,22 @@ export default class CreateGameComponent extends React.Component {
                     <button
                       onClick={() => {
                         const newValue = this.state.newCardValue
-                        const newQ = this.state.newCardQuestion
+                        const newQuestion = this.state.newCardQuestion
+                        const newAnswer = this.state.newCardAnswer
                         console.log(newValue)
-                        console.log(newQ)
+                        console.log(newQuestion)
+                        console.log(newAnswer)
                         this.setState(prevState => ({
-                          newCardValue: '',
-                          newCardTitle: '',
+                          newCardValue: "100",
+                          newCardTitle: "",
+                          newCardQuestion: "",
                           newCard: {},
                           categories: {
                             ...prevState.categories,
-                            [category]: {
+                            [category]: [
                               ...prevState.categories[category],
-                              [newQ]: newValue
-                            }
+                              {"question": newQuestion, "answer": newAnswer, "value": newValue},
+                            ]
                           }
                         }))
                       }}
