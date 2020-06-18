@@ -1,0 +1,38 @@
+.game-board {
+    margin-top: 100px;
+}
+
+.game-col {
+    max-width: 275px;
+}
+
+.game-card-cat {
+    max-height: 175px;
+    min-width: 275px;
+    min-height: 100px;
+    border-width: 5px;
+    font-size: 30px;
+    font-family: "No Continue";
+    color: #F2A104;
+    border-style: solid;
+    border-color: #F2A104;
+}
+
+.game-card {
+    max-height: 175px;
+    min-width: 275px;
+    min-height: 100px;
+    border-width: 5px;
+    font-size: 30px;
+    font-family: "No Continue";
+    color: white;
+    border-style: solid;
+    border-color: white;
+}
+
+.create-game:hover {
+    cursor:pointer;
+    color:white;
+    text-decoration:underline;
+}
+

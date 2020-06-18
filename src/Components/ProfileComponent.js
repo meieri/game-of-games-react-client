@@ -112,9 +112,7 @@ export default class ProfileComponent extends React.Component {
                         </button>
                   }
                 </div>
-
                 <button className='btn btn-outline-light mb-3' onClick={() => this.logout()}>Log Out</button>
-
               </form>
             </div>
 
