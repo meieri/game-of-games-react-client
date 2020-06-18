@@ -13,9 +13,13 @@ class LoginComponent extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.badLogin === true) {
+    if (prevProps.badLogin !== this.props.badLogin) {
       this.setState({ username: '', password: '', badLogin: true})
     }
+    if (this.props.loggedIn == true) {
+      this.props.history.push('/profile')
+    }
+
   }
 
   render() {
@@ -65,7 +69,8 @@ class LoginComponent extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-  loggedIn: state.userReducer.loggedIn
+  loggedIn: state.userReducer.loggedIn,
+  badLogin: state.userReducer.badLogin
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -74,13 +79,11 @@ const mapDispatchToProps = (dispatch) => ({
     UserService.login(username, password)
       .then(currentUser => {
       if(currentUser.username !== "BADLOGIN") {
-        this.props.history.push('/profile')
         dispatch({
           type: "LOGIN", username
         })
       }
       else {
-        console.log('failed login')
         dispatch({
           type: "FAILED_LOGIN"
         })

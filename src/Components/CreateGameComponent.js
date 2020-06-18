@@ -23,7 +23,6 @@ export default class CreateGameComponent extends React.Component {
 
   createGame = () => {
     const body = JSON.stringify(this.state.categories)
-    console.log(body)
     return fetch(`http://localhost:8080/api/game`, {
       method: 'POST',
       body: body,
@@ -122,9 +121,6 @@ export default class CreateGameComponent extends React.Component {
                         const newValue = this.state.newCardValue
                         const newQuestion = this.state.newCardQuestion
                         const newAnswer = this.state.newCardAnswer
-                        console.log(newValue)
-                        console.log(newQuestion)
-                        console.log(newAnswer)
                         this.setState(prevState => ({
                           newCardValue: "100",
                           newCardTitle: "",

@@ -16,11 +16,11 @@ const userReducer = (state = initialState, event) => {
     case "LOGOUT":
       return initialState
     case "FAILED_LOGIN":
-      console.log('hi from badlogin')
-      return {
+      const newState = {
         ...state,
         badLogin: true
       }
+      return newState
     default:
       return state
   }

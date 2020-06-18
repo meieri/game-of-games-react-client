@@ -18,11 +18,9 @@ export default class ProfileComponent extends React.Component {
       credentials: "include"
     })
       .then(response => {
-        console.log(response)
         return response.json()
       })
       .catch(e => {
-        console.log(e)
         this.props.history.push('/')
       })
       .then(user => {
