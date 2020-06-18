@@ -16,7 +16,7 @@ class LoginComponent extends React.Component {
     if (prevProps.badLogin !== this.props.badLogin) {
       this.setState({ username: '', password: '', badLogin: true})
     }
-    if (this.props.loggedIn == true) {
+    if (this.props.loggedIn === true) {
       this.props.history.push('/profile')
     }
 

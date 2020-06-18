@@ -1,21 +1,26 @@
 import React from "react";
 import "./RegisterComponent.css";
+import UserService from "../services/UserService";
+import {connect} from "react-redux";
 
-export default class RegisterComponent extends React.Component {
+class RegisterComponent extends React.Component {
+
   state = {
     username: "",
     password: "",
     confirmPassword: "",
   };
 
-  form = document.getElementById("form");
-  button = document.getElementById("submit");
-  errorElement = document.getElementById("error");
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.loggedIn !== this.props.loggedIn && this.props.loggedIn === true) {
+      alert("Sign Up Successful");
+      this.props.history.push("/profile");
+    }
+  }
 
-  handleSubmit = (e) => {
+  handleSubmit = () => {
     let messages = [];
-
-    var alphanumeric = /^[0-9a-zA-Z]+$/;
+    const alphanumeric = /^[0-9a-zA-Z]+$/;
 
     if (
       this.state.username.trim() === "" ||
@@ -26,45 +31,23 @@ export default class RegisterComponent extends React.Component {
         "Fields must be non-empty and contain non-space characters"
       );
     }
-
     if (!this.state.username.match(alphanumeric)) {
       messages.push("Username must only contain alphanumeric characters");
     }
-
     if (this.state.username.length < 4 || this.state.username.length > 12) {
       messages.push("Username must be between 4 and 12 characters in length");
     }
-
     if (this.state.password !== this.state.confirmPassword) {
       messages.push("Passwords do not match");
     }
-
     if (messages.length > 0) {
       alert(messages.join(", "));
       return true;
     } else {
-      return false;
-    }
-  };
-
-  register = () => {
-    if (this.handleSubmit()) {
-      alert("Fix these errors before proceeding");
-    } else {
-      fetch(`http://localhost:8080/api/register`, {
-        method: "POST",
-        body: JSON.stringify({
-          username: this.state.username,
-          password: this.state.password,
-        }),
-        headers: {
-          "content-type": "application/json",
-        },
-        credentials: "include",
+      this.props.register({
+        username: this.state.username,
+        password: this.state.password,
       })
-        .then((response) => response.json())
-        .then((currentUser) => this.props.history.push("/profile"));
-        alert("Sign Up Complete");
     }
   };
 
@@ -82,7 +65,7 @@ export default class RegisterComponent extends React.Component {
             <label htmlFor="userInput">Create a Username</label>
             <input
               className="form-control"
-              onChange={(e) => this.setState({ username: e.target.value })}
+              onChange={(e) => this.setState({username: e.target.value})}
               id="userInput"
               aria-describedby="userHelp"
               placeholder="Username"
@@ -98,7 +81,7 @@ export default class RegisterComponent extends React.Component {
             <input
               className="form-control"
               type="password"
-              onChange={(e) => this.setState({ password: e.target.value })}
+              onChange={(e) => this.setState({password: e.target.value})}
               id="passwordInput"
               aria-describedby="userHelp"
               placeholder="Password"
@@ -114,7 +97,7 @@ export default class RegisterComponent extends React.Component {
             <input
               type="password"
               className="form-control"
-              onChange={(e) => this.setState({ confirmPassword: e.target.value })}
+              onChange={(e) => this.setState({confirmPassword: e.target.value})}
               id="passwordInput1"
               placeholder="Password"
               required
@@ -124,8 +107,7 @@ export default class RegisterComponent extends React.Component {
           <button
             className="btn btn-lg btn-outline-light btn-block registerBtn"
             type="button"
-            onClick={() => this.register()}
-          >
+            onClick={() => this.handleSubmit()}>
             Sign Me Up!
           </button>
         </form>
@@ -133,3 +115,18 @@ export default class RegisterComponent extends React.Component {
     );
   }
 }
+
+const stateToPropertyMapper = (state) => ({
+  loggedIn: state.userReducer.loggedIn
+})
+
+const dispatchToPropertyMapper = (dispatch) => ({
+  register: (newUser) =>
+    UserService.register(newUser)
+      .then(dispatch({
+        type: "LOGIN",
+        username: newUser.username
+      }))
+})
+
+export default connect(stateToPropertyMapper, dispatchToPropertyMapper)(RegisterComponent)

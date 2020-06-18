@@ -9,7 +9,19 @@ const login = (username, password) =>
   })
     .then(response => response.json())
 
+const register = (newUser) =>
+  fetch(`http://localhost:8080/api/register`, {
+    method: "POST",
+    body: JSON.stringify(newUser),
+    headers: {
+      "content-type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => response.json())
+
 
 export default {
-  login
+  login,
+  register
 }

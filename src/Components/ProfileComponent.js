@@ -2,9 +2,9 @@ import React from "react";
 import './ProfileComponent.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEdit} from '@fortawesome/free-solid-svg-icons'
-import {Link} from "react-router-dom";
+import {connect} from 'react-redux'
 
-export default class ProfileComponent extends React.Component {
+class ProfileComponent extends React.Component {
   state = {
     username: '',
     password: '',
@@ -37,7 +37,10 @@ export default class ProfileComponent extends React.Component {
       method: 'POST',
       credentials: "include"
     })
-      .then(this.props.history.push('/'))
+      .then(() => {
+        this.props.history.push('/')
+        this.props.logout()
+      })
 
   render() {
     return (
@@ -102,12 +105,12 @@ export default class ProfileComponent extends React.Component {
                   }
                   {
                     this.state.editingPassword &&
-                        <button
-                          className='btn btn-outline-light ml-3'
-                          type='button'
-                          onClick={() => this.setState({editingPassword: false})}>
-                          Submit
-                        </button>
+                    <button
+                      className='btn btn-outline-light ml-3'
+                      type='button'
+                      onClick={() => this.setState({editingPassword: false})}>
+                      Submit
+                    </button>
                   }
                 </div>
                 <button className='btn btn-outline-light mb-3' onClick={() => this.logout()}>Log Out</button>
@@ -117,7 +120,8 @@ export default class ProfileComponent extends React.Component {
             <div className='col-7'>
               <button
                 onClick={() => this.props.history.push('/create')}
-                className='btn btn-outline-light btn-lg'>Create New Game</button>
+                className='btn btn-outline-light btn-lg'>Create New Game
+              </button>
               <h1>Past Games</h1>
             </div>
           </div>
@@ -133,3 +137,12 @@ export default class ProfileComponent extends React.Component {
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  logout: () =>
+    dispatch({
+      type: "LOGOUT"
+    })
+})
+
+export default connect(mapDispatchToProps)(ProfileComponent)
