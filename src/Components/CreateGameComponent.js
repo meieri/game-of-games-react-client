@@ -89,8 +89,9 @@ export default class CreateGameComponent extends React.Component {
                       onClick={() => {
                         const newValue = this.state.newCardValue
                         const newQ = this.state.newCardQuestion
+                        console.log(newValue)
+                        console.log(newQ)
                         this.setState(prevState => ({
-                          ...prevState,
                           newCardValue: '',
                           newCardTitle: '',
                           newCard: {},
@@ -98,7 +99,7 @@ export default class CreateGameComponent extends React.Component {
                             ...prevState.categories,
                             [category]: {
                               ...prevState.categories[category],
-                              [newValue]: newQ
+                              [newQ]: newValue
                             }
                           }
                         }))
