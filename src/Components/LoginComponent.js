@@ -19,7 +19,6 @@ class LoginComponent extends React.Component {
     if (this.props.loggedIn === true) {
       this.props.history.push('/profile')
     }
-
   }
 
   render() {
@@ -80,7 +79,8 @@ const mapDispatchToProps = (dispatch) => ({
       .then(currentUser => {
       if(currentUser.username !== "BADLOGIN") {
         dispatch({
-          type: "LOGIN", username
+          type: "LOGIN",
+          username
         })
       }
       else {

@@ -14,16 +14,24 @@ class ProfileComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.props.findUser()
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.loggedIn === true) {
       this.setState({
         username: this.props.username
       })
     } else {
       this.props.history.push('/')
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.loggedIn !== this.props.loggedIn) {
+      if (this.props.loggedIn === true) {
+        this.setState({
+          username: this.props.username
+        })
+      } else if (this.props.loggedIn) {
+        this.props.history.push('/')
+      }
     }
   }
 
@@ -63,7 +71,10 @@ class ProfileComponent extends React.Component {
                     <button
                       className='btn btn-outline-light ml-3'
                       type='button'
-                      onClick={() => this.setState({editingUsername: false})}>
+                      onClick={() => {
+                        this.props.updateUsername(this.state.username)
+                        this.setState({editingUsername: false})
+                      }}>
                       Submit
                     </button>
                   }
@@ -136,21 +147,18 @@ const dispatchToPropertyMapper = (dispatch) => ({
 
   logout: () =>
     UserService.logout()
-      .then(() => {
+      .then(() =>
         dispatch({type: "LOGOUT"})
-      }),
+      ),
 
-  findUser: () =>
-    UserService.findUser()
-      .catch(e => {
-        dispatch({type: "LOGOUT"})
-      })
-      .then((user) =>
-        dispatch({
-          type: "LOGIN",
-          username: user.username
+  updateUsername: (username) =>
+    UserService.updateUsername(username)
+      .then(response => dispatch({
+          type: "UPDATE_NAME",
+          newUsername: response.username
         })
       )
+
 })
 
 export default connect(stateToPropertyMapper, dispatchToPropertyMapper)(ProfileComponent)

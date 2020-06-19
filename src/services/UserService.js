@@ -26,9 +26,10 @@ const register = (newUser) =>
   })
     .then((response) => response.json())
 
-const findUser = () =>
-  fetch("http://localhost:8080/api/profile", {
+const updateUsername = (username) =>
+  fetch("http://localhost:8080/api/user/name", {
     method: 'POST',
+    body: username,
     credentials: "include"
   })
     .then(response => response.json())
@@ -36,6 +37,6 @@ const findUser = () =>
 export default {
   login,
   logout,
-  findUser,
-  register
+  register,
+  updateUsername
 }
