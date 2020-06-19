@@ -14,9 +14,7 @@ class ProfileComponent extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.loggedIn) {
-      this.props.findUser()
-    }
+    this.props.findUser()
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -100,7 +98,11 @@ class ProfileComponent extends React.Component {
                     </button>
                   }
                 </div>
-                <button className='btn btn-outline-light mb-3' onClick={() => this.props.logout()}>Log Out</button>
+                <button type='button'
+                        className='btn btn-outline-light mb-3'
+                        onClick={() => this.props.logout()}>
+                  Log Out
+                </button>
               </form>
             </div>
 
@@ -131,23 +133,24 @@ const stateToPropertyMapper = (state) => ({
 })
 
 const dispatchToPropertyMapper = (dispatch) => ({
+
   logout: () =>
     UserService.logout()
       .then(() => {
         dispatch({type: "LOGOUT"})
       }),
+
   findUser: () =>
     UserService.findUser()
       .catch(e => {
         dispatch({type: "LOGOUT"})
       })
-      .then((user) => {
-        console.log("I'm called!")
+      .then((user) =>
         dispatch({
           type: "LOGIN",
           username: user.username
         })
-      })
+      )
 })
 
 export default connect(stateToPropertyMapper, dispatchToPropertyMapper)(ProfileComponent)
