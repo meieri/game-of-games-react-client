@@ -3,6 +3,7 @@ import './ProfileComponent.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEdit} from '@fortawesome/free-solid-svg-icons'
 import {connect} from 'react-redux'
+import UserService from "../services/UserService";
 
 class ProfileComponent extends React.Component {
   state = {
@@ -13,34 +14,20 @@ class ProfileComponent extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8080/api/profile", {
-      method: 'POST',
-      credentials: "include"
-    })
-      .then(response => {
-        return response.json()
-      })
-      .catch(e => {
-        this.props.history.push('/')
-      })
-      .then(user => {
-        if (user)
-          this.setState({
-            username: user.username,
-            password: user.password
-          })
-      })
+    if (!this.props.loggedIn) {
+      this.props.findUser()
+    }
   }
 
-  logout = () =>
-    fetch(`http://localhost:8080/api/logout`, {
-      method: 'POST',
-      credentials: "include"
-    })
-      .then(() => {
-        this.props.history.push('/')
-        this.props.logout()
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.loggedIn === true) {
+      this.setState({
+        username: this.props.username
       })
+    } else {
+      this.props.history.push('/')
+    }
+  }
 
   render() {
     return (
@@ -113,7 +100,7 @@ class ProfileComponent extends React.Component {
                     </button>
                   }
                 </div>
-                <button className='btn btn-outline-light mb-3' onClick={() => this.logout()}>Log Out</button>
+                <button className='btn btn-outline-light mb-3' onClick={() => this.props.logout()}>Log Out</button>
               </form>
             </div>
 
@@ -138,11 +125,30 @@ class ProfileComponent extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  logout: () =>
-    dispatch({
-      type: "LOGOUT"
-    })
+const stateToPropertyMapper = (state) => ({
+  loggedIn: state.userReducer.loggedIn,
+  username: state.userReducer.username
 })
 
-export default connect(mapDispatchToProps)(ProfileComponent)
+const dispatchToPropertyMapper = (dispatch) => ({
+  logout: () =>
+    UserService.logout()
+      .then(() => {
+        dispatch({type: "LOGOUT"})
+      }),
+  findUser: () =>
+    UserService.findUser()
+      .catch(e => {
+        dispatch({type: "LOGOUT"})
+      })
+      .then((user) => {
+        console.log("I'm called!")
+          dispatch({
+            type: "LOGIN",
+            username: user.username
+          })
+      }
+      )
+})
+
+export default connect(stateToPropertyMapper, dispatchToPropertyMapper)(ProfileComponent)

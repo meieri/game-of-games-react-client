@@ -37,10 +37,10 @@ class LoginComponent extends React.Component {
             placeholder="Username"/>
 
           <input
-            type="password passwordField"
+            type="password"
             onChange={(e) => this.setState({password: e.target.value})}
             value={this.state.password}
-            className="form-control"
+            className="form-control passwordField"
             placeholder="Password"/>
 
           <div className="checkbox mt-3">

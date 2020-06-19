@@ -9,6 +9,12 @@ const login = (username, password) =>
   })
     .then(response => response.json())
 
+const logout = () =>
+  fetch(`http://localhost:8080/api/logout`, {
+    method: 'POST',
+    credentials: "include"
+  })
+
 const register = (newUser) =>
   fetch(`http://localhost:8080/api/register`, {
     method: "POST",
@@ -20,8 +26,16 @@ const register = (newUser) =>
   })
     .then((response) => response.json())
 
+const findUser = () =>
+  fetch("http://localhost:8080/api/profile", {
+    method: 'POST',
+    credentials: "include"
+  })
+    .then(response => response.json())
 
 export default {
   login,
+  logout,
+  findUser,
   register
 }
