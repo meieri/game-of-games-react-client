@@ -20,7 +20,7 @@ class GameOfGames extends React.Component {
               className='ml-3 navbar-heading barHeading'>Game Of Games</Link>
             {
               !this.props.loggedIn &&
-              <div>
+              <div className="profile-access">
                 <Link
                   to={'/login'}
                   className='mr-3 barLink'>Log In</Link>

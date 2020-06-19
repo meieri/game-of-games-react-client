@@ -14,13 +14,25 @@ body {
 }
 
 .media-body-heading {
-  font-family: Sriracha;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 32px;
   min-width: 20vw;
+  color: #F2A104;
+}
+
+.mobile-media-body-heading {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 32px;
+  min-width: 20vw;
+  padding-left: 20vw;
+  color: #F2A104;
 }
 .media-body {
-  font-family: Sriracha;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 17px;
+  padding-right: 65px;
+  margin: auto;
+  color: #F2A104;
 }
 
 .borderMe {
