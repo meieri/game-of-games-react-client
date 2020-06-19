@@ -143,12 +143,11 @@ const dispatchToPropertyMapper = (dispatch) => ({
       })
       .then((user) => {
         console.log("I'm called!")
-          dispatch({
-            type: "LOGIN",
-            username: user.username
-          })
-      }
-      )
+        dispatch({
+          type: "LOGIN",
+          username: user.username
+        })
+      })
 })
 
 export default connect(stateToPropertyMapper, dispatchToPropertyMapper)(ProfileComponent)

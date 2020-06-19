@@ -21,7 +21,7 @@ export default class LandingComponent extends React.Component {
                   created a custom, brand new, un-before-heard of game-- based
                   almost entirely off Jeopardy. However, you create the board.
                   And the questions. Sound like fun?
-                  <Link style={{ color: "white" }}> Let's get started.</Link>
+                  <Link to={'/register'} style={{ color: "white" }}> Let's get started.</Link>
                 </p>
                 <br />
                 <p>
