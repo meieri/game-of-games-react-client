@@ -5,6 +5,7 @@ import LoginComponent from "./LoginComponent";
 import RegisterComponent from "./RegisterComponent";
 import ProfileComponent from "./ProfileComponent";
 import CreateGameComponent from "./CreateGameComponent";
+import PlayGameComponent from "./PlayGameComponent";
 import {connect} from 'react-redux'
 import './GameOfGames.css'
 
@@ -61,6 +62,10 @@ class GameOfGames extends React.Component {
             path='/create'
             exact={true}
             component={CreateGameComponent}/>
+          <Route
+            path='/play/:gameId'
+            exact={true}
+            component={PlayGameComponent}/>
         </BrowserRouter>
       </div>
 

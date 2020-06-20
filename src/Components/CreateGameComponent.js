@@ -25,7 +25,7 @@ class CreateGameComponent extends React.Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.currentGameId !== this.props.currentGameId) {
-      this.props.history.push('/play')
+      this.props.history.push(`/play/${this.props.currentGameId}`)
     }
   }
 
@@ -42,7 +42,7 @@ class CreateGameComponent extends React.Component {
         {this.state.modal &&
         <div className='d-flex justify-content-center mb-3 form-inline'>
           Are you sure?
-          <button className='btn btn-outline-light mx-1' onClick={() => this.createGame(this.state.categories)}>Yes</button>
+          <button className='btn btn-outline-light mx-1' onClick={() => this.props.createGame(this.state.categories)}>Yes</button>
           <button className='btn btn-outline-light mx-1' onClick={() => this.setState({modal: false})}>No</button>
         </div>
         }
