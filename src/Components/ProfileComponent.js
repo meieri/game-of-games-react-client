@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import UserService from "../services/UserService";
 import GameService from "../services/GameService";
 import {Link} from "react-router-dom";
+import { SpotifyComponent } from "./SpotifyComponent.js";
 
 class ProfileComponent extends React.Component {
   state = {
@@ -127,6 +128,7 @@ class ProfileComponent extends React.Component {
                 onClick={() => this.props.history.push('/create')}
                 className='btn btn-outline-light btn-lg'>Create New Game
               </button>
+              <SpotifyComponent />
               <div>
                 <h1>Your Games</h1>
                 <table className='table'>
