@@ -2,8 +2,10 @@ import React from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPlus, faCheck} from '@fortawesome/free-solid-svg-icons'
 import './CreateGameComponent.css'
+import GameService from "../services/GameService";
+import {connect} from 'react-redux'
 
-export default class CreateGameComponent extends React.Component {
+class CreateGameComponent extends React.Component {
   state = {
     categories: {
       "Pictionary": [],
@@ -21,32 +23,26 @@ export default class CreateGameComponent extends React.Component {
     modal: false
   }
 
-  createGame = () => {
-    const body = JSON.stringify(this.state.categories)
-    return fetch(`http://localhost:8080/api/game`, {
-      method: 'POST',
-      body: body,
-      credentials: "include",
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
-      .then(response => response.json())
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.currentGameId !== this.props.currentGameId) {
+      this.props.history.push('/play')
+    }
   }
-
 
   render() {
     return (
       <div>
 
         <h1 className='d-flex justify-content-center mb-3 create-game'>
-          <button className='btn-outline-light btn btn-lg' onClick={() => this.setState({modal: true})}>Create the Game</button>
+          <button className='btn-outline-light btn btn-lg' onClick={() => this.setState({modal: true})}>Create the
+                                                                                                        Game
+          </button>
         </h1>
 
         {this.state.modal &&
         <div className='d-flex justify-content-center mb-3 form-inline'>
           Are you sure?
-          <button className='btn btn-outline-light mx-1' onClick={() => this.createGame()}>Yes</button>
+          <button className='btn btn-outline-light mx-1' onClick={() => this.createGame(this.state.categories)}>Yes</button>
           <button className='btn btn-outline-light mx-1' onClick={() => this.setState({modal: false})}>No</button>
         </div>
         }
@@ -71,10 +67,10 @@ export default class CreateGameComponent extends React.Component {
 
                       {
                         this.state.flipCard === question &&
-                          <div>
-                            {question["answer"]}
-                            <div>Value: {question["value"]}</div>
-                          </div>
+                        <div>
+                          {question["answer"]}
+                          <div>Value: {question["value"]}</div>
+                        </div>
                       }
                       {
                         this.state.flipCard !== question &&
@@ -156,3 +152,19 @@ export default class CreateGameComponent extends React.Component {
     );
   }
 }
+
+const stateToPropertyMapper = (state) => ({
+  currentGameId: state.gameReducer.currentGameId
+})
+
+const dispatchToPropertyMapper = (dispatch) => ({
+  createGame: (newGame) =>
+    GameService.createGame(newGame)
+      // this returns a surface level game, with no categories or questions
+      .then(shallowGame => dispatch({
+        type: "CREATE_GAME",
+        gameId: shallowGame.id
+      }))
+})
+
+export default connect(stateToPropertyMapper, dispatchToPropertyMapper)(CreateGameComponent)

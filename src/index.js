@@ -7,9 +7,10 @@ import * as serviceWorker from './serviceWorker';
 import {combineReducers, createStore} from "redux";
 import { Provider } from 'react-redux'
 import userReducer from './reducers/UserReducer'
+import gameReducer from "./reducers/GameReducer";
 
 const reducers = combineReducers({
-  userReducer
+  userReducer, gameReducer
 })
 
 const store = createStore(reducers)
