@@ -26,6 +26,9 @@ class PlayGameComponent extends React.Component {
     if (prevProps.game !== this.props.game && this.props.game) {
       this.setState({game: this.props.game})
     }
+    if (prevProps.inPlay === true && this.props.inPlay === false) {
+      this.props.history.push('/gameover')
+    }
   }
 
   endGame = () => {
@@ -168,7 +171,8 @@ class PlayGameComponent extends React.Component {
 }
 
 const stateToPropertyMapper = (state) => ({
-  game: state.gameReducer.game
+  game: state.gameReducer.game,
+  inPlay: state.gameReducer.inPlay
 })
 
 const dispatchToPropertyMapper = (dispatch) => ({
@@ -188,7 +192,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
     GameService.endGame(gameId)
       .then(endedGame => dispatch({
         type: "END_GAME",
-        endedGame
+        winner
       }))
 
 })

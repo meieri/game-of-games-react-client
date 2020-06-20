@@ -2,7 +2,8 @@ const initialState = {
   currentGameId: '',
   inPlay: false,
   game: '',
-  userGames: ''
+  userGames: '',
+  winner: ''
 }
 
 const gameReducer = (state = initialState, event) => {
@@ -35,7 +36,8 @@ const gameReducer = (state = initialState, event) => {
     case "END_GAME":
       return {
         ...state,
-        inPlay: false
+        inPlay: false,
+        winner: event.winner
       }
     default:
       return state
