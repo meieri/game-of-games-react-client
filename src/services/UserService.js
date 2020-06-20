@@ -34,9 +34,20 @@ const updateUsername = (username) =>
   })
     .then(response => response.json())
 
+const findProfile = () =>
+  fetch(`http://localhost:8080/api/profile`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    credentials: "include"
+  })
+    .then(response => response.json())
+
 export default {
   login,
   logout,
   register,
-  updateUsername
+  updateUsername,
+  findProfile
 }

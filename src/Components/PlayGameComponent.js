@@ -1,11 +1,14 @@
 import React from "react";
 import GameService from "../services/GameService";
 import {connect} from "react-redux";
+import './PlayGameComponent.css'
 
 class PlayGameComponent extends React.Component {
 
   state = {
-    game: ''
+    game: '',
+    playingQuestion: '',
+    showAnswer: false
   }
 
   // TODO remap 'cc' to 'dd O' in vim
@@ -22,20 +25,48 @@ class PlayGameComponent extends React.Component {
 
   render() {
     return (
-      <div className='game-board container'>
-        {this.state.game &&
-        this.state.game.categories.map(category =>
-          <div key={category.id}>
-            <h1>{category.name}</h1>
-            {category.questions.map(question =>
-              <div>
-              <h2>{question.question}</h2>
-              <h2>{question.answer}</h2>
-              <h2>{question.value}</h2>
+      <div>
+        {
+          this.state.playingQuestion === '' &&
+          <div className='container-fluid game-board'>
+            <div className='row d-flex justify-content-center'>
+              {this.state.game &&
+              this.state.game.categories.map(category =>
+                <div
+                  key={category.id}
+                  className='btn col game-col mx-2'>
+                  <div className='row game-card-cat d-flex justify-content-center align-content-center'>
+                    {category.name}
+                  </div>
+                  {category.questions.map(question =>
+                    <div key={question.id}
+                         className='row game-card d-flex justify-content-center align-content-center mt-2'
+                         onClick={() => this.setState({playingQuestion: question})}>
+                      <div>{question.value}</div>
+                    </div>
+                  )}
                 </div>
-            )}
+              )}
+            </div>
           </div>
-        )}
+        }
+        {
+          this.state.playingQuestion !== '' &&
+          <div>
+            {!this.state.showAnswer &&
+            <div
+              onClick={() => this.setState({showAnswer: true})}>
+              <h1>{this.state.playingQuestion.question}</h1>
+            </div>
+            }
+            {this.state.showAnswer &&
+            <div
+              onClick={() => this.setState({showAnswer: false, playingQuestion: ''})}>
+              <h1>{this.state.playingQuestion.answer}</h1>
+            </div>
+            }
+          </div>
+        }
       </div>
     )
   }

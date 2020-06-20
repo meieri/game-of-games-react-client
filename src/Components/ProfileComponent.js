@@ -16,14 +16,16 @@ class ProfileComponent extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.loggedIn === true) {
-      this.setState({
-        username: this.props.username
-      })
-      this.props.findGameByUser()
-    } else {
-      this.props.history.push('/')
-    }
+    this.props.findProfile().then( response => {
+        if (this.props.loggedIn === true) {
+          this.setState({
+            username: this.props.username
+          })
+          this.props.findGameByUser()
+        } else {
+          this.props.history.push('/')
+        }
+    })
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -138,14 +140,14 @@ class ProfileComponent extends React.Component {
                   </thead>
                   {this.props.gameList &&
                   <tbody>
-                    {this.props.gameList.map(game =>
-                      <tr>
-                        <th scope="row">{game.id}</th>
-                        <td>{game.name}</td>
-                        <td>{game.start}</td>
-                        <td><Link to={`/play/${game.id}`}>Play Me Again!</Link></td>
-                      </tr>
-                    )}
+                  {this.props.gameList.map(game =>
+                    <tr>
+                      <th scope="row">{game.id}</th>
+                      <td>{game.name}</td>
+                      <td>{game.start}</td>
+                      <td><Link to={`/play/${game.id}`}>Play Me Again!</Link></td>
+                    </tr>
+                  )}
                   </tbody>
                   }
                 </table>
@@ -172,15 +174,22 @@ const stateToPropertyMapper = (state) => ({
 })
 
 const dispatchToPropertyMapper = (dispatch) => ({
+  findProfile: () =>
+    UserService.findProfile()
+      .then(user =>
+        dispatch({
+          type: "LOGIN",
+          username: user.username
+        })),
 
   logout: () =>
     UserService.logout()
       .then(() =>
         dispatch({type: "LOGOUT"})
       ),
-
   updateUsername: (username) =>
-    UserService.updateUsername(username)
+    UserService.updateUsername
+    (username)
       .then(response => dispatch({
           type: "UPDATE_NAME",
           newUsername: response.username
