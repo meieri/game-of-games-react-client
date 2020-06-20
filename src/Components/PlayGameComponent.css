@@ -1,7 +1,14 @@
+.game-card-cat:hover {
+    cursor: default;
+}
+
+.game-col {
+    max-width: 300px;
+}
+
 .game-card-cat {
-    max-height: 200px;
-    min-width: 275px;
     min-height: 100px;
+    max-height: 200px;
     border-width: 5px;
     font-size: 30px;
     font-family: "No Continue";
@@ -12,11 +19,45 @@
 
 .game-card {
     max-height: 175px;
-    min-width: 275px;
     min-height: 150px;
     border-width: 5px;
-    font-size: 30px;
+    font-size: 50px;
     font-family: "No Continue";
+    color: white;
+    border-style: solid;
+    border-color: white;
+}
+
+.question {
+    font-family: "No Continue";
+    color: white;
+    font-size: 100px;
+}
+
+.question:hover {
+    cursor: pointer;
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.team-container {
+    font-family: "No Continue";
+    color: white;
+    font-size: 40px;
+}
+
+.my-turn {
+    color: white;
+    border-style: solid;
+    border-color: white;
+}
+
+.select-winner:hover {
     color: white;
     border-style: solid;
     border-color: white;

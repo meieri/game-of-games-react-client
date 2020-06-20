@@ -48,13 +48,13 @@ class CreateGameComponent extends React.Component {
         }
 
 
-        <div className='container-fluid game-board'>
+        <div className='container-fluid game-board-create'>
           <div className='row d-flex justify-content-center'>
             {Object.keys(this.state.categories).map(category =>
               <div
                 key={category}
-                className='btn col game-col mx-2'>
-                <div className='row game-card-cat d-flex justify-content-center align-content-center'>
+                className='btn col game-col-create mx-2'>
+                <div className='row game-card-cat-create d-flex justify-content-center align-content-center'>
                   {category}
                 </div>
 
@@ -63,7 +63,7 @@ class CreateGameComponent extends React.Component {
                     <div
                       key={question["question"]}
                       onClick={() => this.setState({flipCard: question})}
-                      className='row game-card d-flex justify-content-center align-content-center mt-2'>
+                      className='row game-card-create d-flex justify-content-center align-content-center mt-2'>
 
                       {
                         this.state.flipCard === question &&
@@ -83,7 +83,7 @@ class CreateGameComponent extends React.Component {
                 {
                   this.state.newCard === category &&
                   <div
-                    className='row game-card d-flex justify-content-center align-content-center mt-2'>
+                    className='row game-card-create d-flex justify-content-center align-content-center mt-2'>
                     <input
                       onChange={(e) => this.setState({newCardQuestion: e.target.value})}
                       placeholder='Question'
@@ -139,7 +139,7 @@ class CreateGameComponent extends React.Component {
 
                 <div
                   onClick={() => this.setState({newCard: category})}
-                  className='row game-card d-flex justify-content-center align-content-center mt-2'>
+                  className='row game-card-create d-flex justify-content-center align-content-center mt-2'>
                   <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
                 </div>
 

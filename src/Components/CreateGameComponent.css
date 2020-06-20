@@ -1,12 +1,12 @@
-.game-board {
+.game-board-create {
     margin-top: 100px;
 }
 
-.game-col {
+.game-col-create {
     max-width: 275px;
 }
 
-.game-card-cat {
+.game-card-cat-create {
     max-height: 175px;
     min-width: 275px;
     min-height: 100px;
@@ -18,7 +18,7 @@
     border-color: #F2A104;
 }
 
-.game-card {
+.game-card-create {
     max-height: 175px;
     min-width: 275px;
     min-height: 100px;
