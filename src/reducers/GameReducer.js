@@ -32,6 +32,11 @@ const gameReducer = (state = initialState, event) => {
         ...state,
         userGames: event.games
       }
+    case "END_GAME":
+      return {
+        ...state,
+        inPlay: false
+      }
     default:
       return state
   }

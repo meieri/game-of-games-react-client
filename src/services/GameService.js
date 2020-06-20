@@ -25,8 +25,19 @@ const findGameByUser = () =>
   })
     .then(response => response.json())
 
+const endGame =  (gameId) =>
+  fetch(`http://localhost:8080/api/gameover/${gameId}`, {
+    method: 'POST',
+    credentials: "include",
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+    .then(response => response.json())
+
 export default {
   createGame,
   findGameById,
-  findGameByUser
+  findGameByUser,
+  endGame
 }

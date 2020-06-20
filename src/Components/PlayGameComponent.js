@@ -28,8 +28,17 @@ class PlayGameComponent extends React.Component {
     }
   }
 
-  endGame = () =>
-    console.log("gameEnd")
+  endGame = () => {
+    let winner = '';
+    if (this.state.team1Points > this.state.team2Points) {
+      winner = "Team 1"
+    } else if (this.state.team1Points < this.state.team2Points){
+      winner = "Team 2"
+    } else {
+      winner = "Nobody"
+    }
+    this.props.endGame(winner, this.state.game.id)
+  }
 
   render() {
     return (
@@ -151,7 +160,6 @@ class PlayGameComponent extends React.Component {
               </div>
               }
             </div>
-
           </div>
         }
       </div>
@@ -175,6 +183,13 @@ const dispatchToPropertyMapper = (dispatch) => ({
         type: "FIND_GAME",
         game
       })),
+
+  endGame: (winner, gameId) =>
+    GameService.endGame(gameId)
+      .then(endedGame => dispatch({
+        type: "END_GAME",
+        endedGame
+      }))
 
 })
 
