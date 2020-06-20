@@ -2,17 +2,20 @@ import React from "react";
 import man from "../images/game-show-host-1.png";
 import { Link } from "react-router-dom";
 import "./LandingComponent.css";
+import UserService from "../services/UserService";
+import {connect} from "react-redux";
 
-export default class LandingComponent extends React.Component {
-  constructor() {
-    super();
-    this.state = {
+class LandingComponent extends React.Component {
+    state = {
       width: window.innerWidth,
-    };
-  }
+    }
 
-  componentWillMount() {
+  componentDidMount() {
     window.addEventListener("resize", this.handleWindowSizeChange);
+    // todo make this work
+    if (this.props.loggedIn) {
+      this.props.history.push('/profile')
+    }
   }
 
   componentWillUnmount() {
@@ -24,8 +27,7 @@ export default class LandingComponent extends React.Component {
   };
 
   render() {
-    const { width } = this.state;
-    const isMobile = width <= 800;
+    const isMobile = this.state.width <= 800;
 
     if (isMobile) {
       return (
@@ -105,3 +107,9 @@ export default class LandingComponent extends React.Component {
     }
   }
 }
+
+const mapStateToProps = (state) => ({
+  loggedIn: state.userReducer.loggedIn,
+})
+
+export default connect(mapStateToProps)(LandingComponent)

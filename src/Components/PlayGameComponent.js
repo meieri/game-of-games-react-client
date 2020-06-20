@@ -14,23 +14,28 @@ class PlayGameComponent extends React.Component {
     this.props.findGameById(this.props.match.params.gameId)
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.game !== this.props.game && this.props.game) {
+      this.setState({game: this.props.game})
+    }
+  }
+
   render() {
     return (
       <div className='game-board container'>
         {this.state.game &&
-          console.log(this.state.game.categories)
-        }
-{/*
-        {this.state.game.categories.map(category =>
-          <div>
+        this.state.game.categories.map(category =>
+          <div key={category.id}>
             <h1>{category.name}</h1>
-            {this.category.questions.map(question =>
-              <h2>{question}</h2>
+            {category.questions.map(question =>
+              <div>
+              <h2>{question.question}</h2>
+              <h2>{question.answer}</h2>
+              <h2>{question.value}</h2>
+                </div>
             )}
           </div>
         )}
-        <h1>Play Game with id of {console.log(this.state.game.categories)}</h1>
-*/}
       </div>
     )
   }

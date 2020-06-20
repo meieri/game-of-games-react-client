@@ -138,17 +138,14 @@ class ProfileComponent extends React.Component {
                   </thead>
                   {this.props.gameList &&
                   <tbody>
-                    {
-                    this.props.gameList.map(game =>
+                    {this.props.gameList.map(game =>
                       <tr>
-                        {console.log(game)}
-                        <th scope="row">1</th>
-                        <td>{game.id}</td>
+                        <th scope="row">{game.id}</th>
+                        <td>{game.name}</td>
                         <td>{game.start}</td>
                         <td><Link to={`/play/${game.id}`}>Play Me Again!</Link></td>
                       </tr>
-                    )
-                  }
+                    )}
                   </tbody>
                   }
                 </table>
