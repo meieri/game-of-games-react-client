@@ -19,13 +19,36 @@
 
 .game-card {
     max-height: 175px;
-    min-height: 150px;
+    min-height: 125px;
     border-width: 5px;
     font-size: 50px;
     font-family: "No Continue";
     color: white;
     border-style: solid;
     border-color: white;
+}
+
+.game-card-played {
+    max-height: 175px;
+    min-height: 125px;
+    border-width: 5px;
+    font-size: 50px;
+    font-family: "No Continue";
+    color: grey;
+    border-style: solid;
+    border-color: grey;
+}
+
+.game-card-played:hover {
+    cursor: default;
+    max-height: 175px;
+    min-height: 125px;
+    border-width: 5px;
+    font-size: 50px;
+    font-family: "No Continue";
+    color: grey;
+    border-style: solid;
+    border-color: grey;
 }
 
 .question {
@@ -35,7 +58,7 @@
 }
 
 .question:hover {
-    cursor: pointer;
+    cursor: default;
 }
 
 .centered {
@@ -49,6 +72,9 @@
     font-family: "No Continue";
     color: white;
     font-size: 40px;
+    max-width: 1500px;
+    margin-left: 200px;
+    margin-right: 200px;
 }
 
 .my-turn {
@@ -58,6 +84,7 @@
 }
 
 .select-winner:hover {
+    cursor: pointer;
     color: white;
     border-style: solid;
     border-color: white;
