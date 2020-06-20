@@ -4,6 +4,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEdit} from '@fortawesome/free-solid-svg-icons'
 import {connect} from 'react-redux'
 import UserService from "../services/UserService";
+import GameService from "../services/GameService";
+import {Link} from "react-router-dom";
 
 class ProfileComponent extends React.Component {
   state = {
@@ -18,6 +20,7 @@ class ProfileComponent extends React.Component {
       this.setState({
         username: this.props.username
       })
+      this.props.findGameByUser()
     } else {
       this.props.history.push('/')
     }
@@ -122,7 +125,34 @@ class ProfileComponent extends React.Component {
                 onClick={() => this.props.history.push('/create')}
                 className='btn btn-outline-light btn-lg'>Create New Game
               </button>
-              <h1>Past Games</h1>
+              <div>
+                <h1>Your Games</h1>
+                <table className='table'>
+                  <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Created</th>
+                    <th scope="col"></th>
+                  </tr>
+                  </thead>
+                  {this.props.gameList &&
+                  <tbody>
+                    {
+                    this.props.gameList.map(game =>
+                      <tr>
+                        {console.log(game)}
+                        <th scope="row">1</th>
+                        <td>{game.id}</td>
+                        <td>{game.start}</td>
+                        <td><Link to={`/play/${game.id}`}>Play Me Again!</Link></td>
+                      </tr>
+                    )
+                  }
+                  </tbody>
+                  }
+                </table>
+              </div>
             </div>
           </div>
           <div className='row'>
@@ -140,7 +170,8 @@ class ProfileComponent extends React.Component {
 
 const stateToPropertyMapper = (state) => ({
   loggedIn: state.userReducer.loggedIn,
-  username: state.userReducer.username
+  username: state.userReducer.username,
+  gameList: state.gameReducer.userGames
 })
 
 const dispatchToPropertyMapper = (dispatch) => ({
@@ -157,7 +188,14 @@ const dispatchToPropertyMapper = (dispatch) => ({
           type: "UPDATE_NAME",
           newUsername: response.username
         })
-      )
+      ),
+  findGameByUser: () =>
+    GameService.findGameByUser()
+      // returns games only for surface level
+      .then(shallowGames => dispatch({
+        type: "SET_USER_GAMES",
+        games: shallowGames
+      }))
 
 })
 

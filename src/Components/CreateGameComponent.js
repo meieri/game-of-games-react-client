@@ -25,7 +25,7 @@ class CreateGameComponent extends React.Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.currentGameId !== this.props.currentGameId) {
-      this.props.history.push(`/play/${this.props.currentGameId}`)
+        this.props.history.push(`/play/${this.props.currentGameId}`)
     }
   }
 
@@ -164,7 +164,8 @@ const dispatchToPropertyMapper = (dispatch) => ({
       .then(shallowGame => dispatch({
         type: "CREATE_GAME",
         gameId: shallowGame.id
-      }))
+      })),
+
 })
 
 export default connect(stateToPropertyMapper, dispatchToPropertyMapper)(CreateGameComponent)

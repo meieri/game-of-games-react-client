@@ -11,6 +11,12 @@ const createGame = (newGame) =>
 
 const findGameById = (gameId) =>
   fetch(`http://localhost:8080/api/game/${gameId}`, {
+    method: 'GET'
+  })
+    .then(response => response.json())
+
+const findGameByUser = () =>
+  fetch(`http://localhost:8080/api/user/games`, {
     method: 'POST',
     credentials: "include",
     headers: {
@@ -21,5 +27,6 @@ const findGameById = (gameId) =>
 
 export default {
   createGame,
-  findGameById
+  findGameById,
+  findGameByUser
 }

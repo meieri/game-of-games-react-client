@@ -15,33 +15,36 @@ class GameOfGames extends React.Component {
       <div>
         <BrowserRouter>
           {/*Navbar header for all pages :)*/}
-          <div className='navbar'>
-            <Link
-              to={'/'}
-              className='ml-3 navbar-heading barHeading'>Game Of Games</Link>
-            {
-              !this.props.loggedIn &&
-              <div className="profile-access">
-                <Link
-                  to={'/login'}
-                  className='mr-3 barLink'>Log In</Link>
-                <Link
-                  to={'/register'}
-                  className='mr-3 barLink'>Sign Up</Link>
-              </div>
-            }
-            {
-              this.props.loggedIn &&
-              <div>
-                <Link
-                  to={'/profile'}
-                  className='mr-3 barLink'>Profile</Link>
-                <Link
-                  to={'/create'}
-                  className='mr-3 barLink'>Create Game</Link>
-              </div>
-            }
-          </div>
+          {
+            !this.props.inPlay &&
+            <div className='navbar'>
+              <Link
+                to={'/'}
+                className='ml-3 navbar-heading barHeading'>Game Of Games</Link>
+              {
+                !this.props.loggedIn &&
+                <div className="profile-access">
+                  <Link
+                    to={'/login'}
+                    className='mr-3 barLink'>Log In</Link>
+                  <Link
+                    to={'/register'}
+                    className='mr-3 barLink'>Sign Up</Link>
+                </div>
+              }
+              {
+                this.props.loggedIn &&
+                <div>
+                  <Link
+                    to={'/profile'}
+                    className='mr-3 barLink'>Profile</Link>
+                  <Link
+                    to={'/create'}
+                    className='mr-3 barLink'>Create Game</Link>
+                </div>
+              }
+            </div>
+          }
           <Route
             path='/'
             exact={true}
@@ -75,6 +78,7 @@ class GameOfGames extends React.Component {
 
 const mapStateToProps = (state) => ({
   loggedIn: state.userReducer.loggedIn,
+  inPlay: state.gameReducer.inPlay
 })
 
 
