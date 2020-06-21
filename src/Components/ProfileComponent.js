@@ -117,7 +117,7 @@ class ProfileComponent extends React.Component {
                 </div>
                 <hr />
                 <h1>Spotify</h1>
-                <SpotifyComponent />
+                <SpotifyComponent/>
 
                 <hr />
                 <button type='button'
