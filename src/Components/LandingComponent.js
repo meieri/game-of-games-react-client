@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./LandingComponent.css";
 import UserService from "../services/UserService";
 import {connect} from "react-redux";
+import SpotifyComponent from "./SpotifyComponent.js";
 
 class LandingComponent extends React.Component {
     state = {
