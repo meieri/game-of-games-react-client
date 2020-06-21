@@ -35,7 +35,7 @@ class ProfileComponent extends React.Component {
         this.setState({
           username: this.props.username
         })
-      } else if (this.props.loggedIn) {
+      } else if (!this.props.loggedIn) {
         this.props.history.push('/')
       }
     }
@@ -53,7 +53,7 @@ class ProfileComponent extends React.Component {
               <h1>User Info</h1>
               <form className='mt-3 '>
 
-                <div className="form-group row">
+                <div className="form-group row d-inline-flex align-items-center">
                   <label htmlFor="usernameField" className="col-form-label ml-3">Username:</label>
                   <fieldset disabled={!this.state.editingUsername} className='ml-3'>
                     <input
@@ -86,7 +86,7 @@ class ProfileComponent extends React.Component {
                   }
                 </div>
 
-                <div className="form-group row">
+                <div className="form-group row d-inline-flex align-items-center">
                   <label htmlFor="passwordField" className="col-form-label ml-3 mr-1">Password:</label>
                   <fieldset disabled={!this.state.editingPassword} className='ml-3'>
                     <input
@@ -121,7 +121,7 @@ class ProfileComponent extends React.Component {
 
                 <hr />
                 <button type='button'
-                        className='btn btn-outline-light mb-3'
+                        className='btn btn-outline-light btn-lg mb-3'
                         onClick={() => this.props.logout()}>
                   Log Out
                 </button>
@@ -177,6 +177,10 @@ const stateToPropertyMapper = (state) => ({
 const dispatchToPropertyMapper = (dispatch) => ({
   findProfile: () =>
     UserService.findProfile()
+      .catch(e =>
+      dispatch({
+        type: "LOGOUT"
+      }))
       .then(user =>
         dispatch({
           type: "LOGIN",
