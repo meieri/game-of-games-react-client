@@ -62,7 +62,13 @@ class CreateGameComponent extends React.Component {
                   this.state.categories[category].map(question =>
                     <div
                       key={question["question"]}
-                      onClick={() => this.setState({flipCard: question})}
+                      onClick={() => {
+                        if (question !== this.setState.flipCard) {
+                          this.setState({flipCard: question})
+                        } else {
+                          this.setState({flipCard: ''})
+                        }
+                      }}
                       className='row game-card-create d-flex justify-content-center align-content-center mt-2'>
 
                       {
@@ -87,7 +93,7 @@ class CreateGameComponent extends React.Component {
                     <input
                       onChange={(e) => this.setState({newCardQuestion: e.target.value})}
                       placeholder='Question'
-                      className='input-group mx-3 mt-1'/>
+                      className='input-group mx-3 mt-2'/>
 
                     <input
                       onChange={(e) => this.setState({newCardAnswer: e.target.value})}
@@ -96,7 +102,7 @@ class CreateGameComponent extends React.Component {
 
                     <form className='form-inline'>
                       <div className='input-group input-group-sm m-2'>
-                        <div className="input-group-prepend">
+                        <div className="input-group-prepend custom-input-group">
                           <label className="input-group-text " htmlFor="pointSelector">Point Value</label>
                         </div>
                         <select
