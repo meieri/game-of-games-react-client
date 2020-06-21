@@ -11,4 +11,4 @@ class SpotifyComponent extends React.Component {
   }
 }
 
-export default SpotifyComponent;
+export default SpotifyComponent

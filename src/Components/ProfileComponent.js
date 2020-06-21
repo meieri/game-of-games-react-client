@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import UserService from "../services/UserService";
 import GameService from "../services/GameService";
 import {Link} from "react-router-dom";
-import { SpotifyComponent } from "./SpotifyComponent.js";
+import SpotifyComponent from "./SpotifyComponent";
 
 class ProfileComponent extends React.Component {
   state = {
@@ -115,6 +115,11 @@ class ProfileComponent extends React.Component {
                     </button>
                   }
                 </div>
+                <hr />
+                <h1>Spotify</h1>
+                <SpotifyComponent />
+
+                <hr />
                 <button type='button'
                         className='btn btn-outline-light mb-3'
                         onClick={() => this.props.logout()}>
@@ -123,14 +128,15 @@ class ProfileComponent extends React.Component {
               </form>
             </div>
 
-            <div className='col-7'>
-              <button
-                onClick={() => this.props.history.push('/create')}
-                className='btn btn-outline-light btn-lg'>Create New Game
-              </button>
-              <SpotifyComponent />
+            <div className='col-6'>
               <div>
-                <h1>Your Games</h1>
+                <div className='form-inline'>
+                  <h1 className='mr-3'>Your Games</h1>
+                  <button
+                    onClick={() => this.props.history.push('/create')}
+                    className='btn btn-outline-light btn-lg'>Create New Game
+                  </button>
+                </div>
                 <table className='table'>
                   <thead>
                   <tr>
@@ -154,13 +160,6 @@ class ProfileComponent extends React.Component {
                   }
                 </table>
               </div>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-5'>
-            </div>
-            <div className='col-7'>
-              <h1>Spotify</h1>
             </div>
           </div>
         </div>
