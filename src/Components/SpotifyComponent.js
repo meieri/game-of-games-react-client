@@ -1,39 +1,25 @@
 import React from "react";
 import "./SpotifyComponent.css";
 import SpotifyWebApi from "spotify-web-api-js";
-
 const spotifyApi = new SpotifyWebApi();
-
 class SpotifyComponent extends React.Component {
 
 
+  // We could not get this working in time for the deadline.
   componentDidMount() {
-    const params = this.getHashParams();
-    console.log(params)
-    const token = params.access_token;
+/*
+    const token = SpotifyService.getAccessToken()
     if (token) {
       spotifyApi.setAccessToken(token);
       this.setState({loggedIn: true})
     }
+*/
   }
 
   state = {
     loggedIn: false,
     songs: "",
   };
-
-  getHashParams() {
-    var hashParams = {};
-    var e,
-      r = /([^&;=]+)=?([^&;]*)/g,
-      q = window.location.hash.substring(1);
-    e = r.exec(q);
-    while (e) {
-      hashParams[e[1]] = decodeURIComponent(e[2]);
-      e = r.exec(q);
-    }
-    return hashParams;
-  }
 
   getTopTracks() {
     var options = {
@@ -49,9 +35,8 @@ class SpotifyComponent extends React.Component {
   render() {
     return (
       <div>
-        <a href="http://localhost:8888"> Login to Spotify </a>
-        <div>Users Top Songs:</div>
-        <button type='button' onClick={() => this.getTopTracks()}>Get Top Tracks</button>
+        <button className='btn btn-outline-light'> {/*href="http://localhost:8888"*/} Login to Spotify </button>
+        <button className='btn btn-outline-light' onClick={() => this.getTopTracks()}>Get Top Tracks</button>
 
         {this.state.loggedIn && this.state.songs &&
         <div>

@@ -20,7 +20,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-window-size": "^1.2.2",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "spotify-web-api-js": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
