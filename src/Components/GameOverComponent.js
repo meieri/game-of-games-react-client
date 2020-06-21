@@ -1,6 +1,5 @@
 import React from "react";
 import {connect} from "react-redux";
-import windowSize from 'react-window-size';
 import Confetti from 'react-confetti'
 
 class GameOverComponent extends React.Component {

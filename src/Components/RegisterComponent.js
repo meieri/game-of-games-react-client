@@ -105,7 +105,7 @@ class RegisterComponent extends React.Component {
           </div>
 
           <button
-            className="btn btn-lg btn-outline-light btn-block registerBtn"
+            className="btn btn-lg btn-outline-light registerBtn"
             type="button"
             onClick={() => this.handleSubmit()}>
             Sign Me Up!

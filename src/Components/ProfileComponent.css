@@ -13,3 +13,10 @@ button {
     font-family: "No Continue";
     color: white;
 }
+
+.play-again {
+    color: white;
+}
+.play-again:hover {
+    color: white;
+}

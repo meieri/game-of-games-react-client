@@ -141,8 +141,7 @@ class ProfileComponent extends React.Component {
                   <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Created</th>
+                    <th scope="col">Date Created</th>
                     <th scope="col"></th>
                   </tr>
                   </thead>
@@ -152,8 +151,7 @@ class ProfileComponent extends React.Component {
                     <tr>
                       <th scope="row">{game.id}</th>
                       <td>{game.name}</td>
-                      <td>{game.start}</td>
-                      <td><Link to={`/play/${game.id}`}>Play Me Again!</Link></td>
+                      <td><Link className="play-again" to={`/play/${game.id}`}>Play Me Again!</Link></td>
                     </tr>
                   )}
                   </tbody>

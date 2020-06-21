@@ -55,11 +55,12 @@ class LoginComponent extends React.Component {
               </div>
           }
 
-          <button
-            className="btn btn-lg btn-outline-light btn-block loginBtn"
-            type='button'
-            onClick={() => this.props.login(this.state.username, this.state.password)}>
-            Log In</button>
+            <button
+              className="btn btn-lg btn-outline-light loginBtn "
+              type='button'
+              onClick={() => this.props.login(this.state.username, this.state.password)}>
+              Log Me In!</button>
+
         </form>
       </div>
     )
