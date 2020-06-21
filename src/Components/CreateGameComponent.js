@@ -55,7 +55,7 @@ class CreateGameComponent extends React.Component {
                 key={category}
                 className='btn col game-col-create mx-2'>
                 <div className='row game-card-cat-create d-flex justify-content-center align-content-center'>
-                  {category}
+                  <div>{category}</div>
                 </div>
 
                 {
