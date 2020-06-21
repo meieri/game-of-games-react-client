@@ -8,10 +8,9 @@ class SpotifyComponent extends React.Component {
 
 
   componentDidMount() {
-    console.log('moutning')
     const params = this.getHashParams();
+    console.log(params)
     const token = params.access_token;
-    console.log(token)
     if (token) {
       spotifyApi.setAccessToken(token);
       this.setState({loggedIn: true})
@@ -28,7 +27,6 @@ class SpotifyComponent extends React.Component {
     var e,
       r = /([^&;=]+)=?([^&;]*)/g,
       q = window.location.hash.substring(1);
-    console.log(q)
     e = r.exec(q);
     while (e) {
       hashParams[e[1]] = decodeURIComponent(e[2]);
