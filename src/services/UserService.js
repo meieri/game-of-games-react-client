@@ -1,5 +1,5 @@
 const login = (username, password) =>
-  fetch("http://localhost:8080/api/login", {
+  fetch("https://isaak-game-of-games-meier.herokuapp.com/api/login", {
     body: JSON.stringify({username: username, password: password}),
     headers: {
       'content-type': 'application/json'
@@ -10,13 +10,13 @@ const login = (username, password) =>
     .then(response => response.json())
 
 const logout = () =>
-  fetch(`http://localhost:8080/api/logout`, {
+  fetch(`https://isaak-game-of-games-meier.herokuapp.com/api/logout`, {
     method: 'POST',
     credentials: "include"
   })
 
 const register = (newUser) =>
-  fetch(`http://localhost:8080/api/register`, {
+  fetch(`https://isaak-game-of-games-meier.herokuapp.com/api/register`, {
     method: "POST",
     body: JSON.stringify(newUser),
     headers: {
@@ -27,7 +27,7 @@ const register = (newUser) =>
     .then((response) => response.json())
 
 const updateUsername = (username) =>
-  fetch("http://localhost:8080/api/user/name", {
+  fetch("https://isaak-game-of-games-meier.herokuapp.com/api/user/name", {
     method: 'POST',
     body: username,
     credentials: "include"
@@ -35,7 +35,7 @@ const updateUsername = (username) =>
     .then(response => response.json())
 
 const findProfile = () =>
-  fetch(`http://localhost:8080/api/profile`, {
+  fetch(`https://isaak-game-of-games-meier.herokuapp.com/api/profile`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
