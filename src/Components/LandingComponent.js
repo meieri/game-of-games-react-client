@@ -12,10 +12,6 @@ class LandingComponent extends React.Component {
 
   componentDidMount() {
     window.addEventListener("resize", this.handleWindowSizeChange);
-    // todo make this work
-    if (this.props.loggedIn) {
-      this.props.history.push('/profile')
-    }
   }
 
   componentWillUnmount() {

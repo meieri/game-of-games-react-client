@@ -20,6 +20,7 @@ class PlayGameComponent extends React.Component {
   componentDidMount() {
     this.props.playGame()
     this.props.findGameById(this.props.match.params.gameId)
+    document.body.style.overflow = "hidden";
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
