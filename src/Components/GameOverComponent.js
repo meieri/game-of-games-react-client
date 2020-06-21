@@ -4,9 +4,9 @@ import {connect} from "react-redux";
 class GameOverComponent extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Game Over</h1>
-        <h2>Congratulations to {this.props.winner}!</h2>
+      <div className='container '>
+        <h1 className='mt-3 d-flex justify-content-center'>Game Over</h1>
+        <h1 className='mt-3 d-flex justify-content-center'>Congratulations to {this.props.winner}!</h1>
       </div>
     )
   }

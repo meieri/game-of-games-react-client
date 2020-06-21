@@ -80,7 +80,7 @@ class PlayGameComponent extends React.Component {
                 </div>
               )}
             </div>
-            <div className='container-fluid d-inline-flex justify-content-between mt-3 team-container'>
+            <div className='container-fluid d-inline-flex justify-content-between mt-0 team-container'>
               <div className={this.state.team1turn ? 'my-turn' : ''}>
                 <div className='py-1 px-2'>Team 1: {this.state.team1Points}</div>
               </div>

@@ -1,3 +1,6 @@
+body {
+    overflow: hidden;
+}
 .game-card-cat:hover {
     cursor: default;
 }
@@ -72,9 +75,6 @@
     font-family: "No Continue";
     color: white;
     font-size: 40px;
-    max-width: 1500px;
-    margin-left: 200px;
-    margin-right: 200px;
 }
 
 .my-turn {
