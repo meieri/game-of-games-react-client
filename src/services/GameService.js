@@ -9,6 +9,12 @@ const createGame = (newGame) =>
   })
     .then(response => response.json())
 
+const deleteGame = (gameId) =>
+  fetch(`https://isaak-game-of-games-meier.herokuapp.com/api/game/${gameId}`, {
+    method: 'DELETE'
+  })
+    .then()
+
 const findGameById = (gameId) =>
   fetch(`https://isaak-game-of-games-meier.herokuapp.com/api/game/${gameId}`, {
     method: 'GET'
@@ -39,5 +45,6 @@ export default {
   createGame,
   findGameById,
   findGameByUser,
-  endGame
+  endGame,
+  deleteGame
 }

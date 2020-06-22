@@ -13,19 +13,20 @@ class ProfileComponent extends React.Component {
     username: '',
     password: '',
     editingUsername: false,
-    editingPassword: false
+    editingPassword: false,
+    deletingGame: ''
   }
 
   componentDidMount() {
-    this.props.findProfile().then( response => {
-        if (this.props.loggedIn === true) {
-          this.setState({
-            username: this.props.username
-          })
-          this.props.findGameByUser()
-        } else {
-          this.props.history.push('/')
-        }
+    this.props.findProfile().then(response => {
+      if (this.props.loggedIn === true) {
+        this.setState({
+          username: this.props.username
+        })
+        this.props.findGameByUser()
+      } else {
+        this.props.history.push('/')
+      }
     })
   }
 
@@ -115,11 +116,11 @@ class ProfileComponent extends React.Component {
                     </button>
                   }
                 </div>
-                <hr />
+                <hr/>
                 <h1>Spotify</h1>
                 <SpotifyComponent/>
 
-                <hr />
+                <hr/>
                 <button type='button'
                         className='btn btn-outline-light btn-lg mb-3'
                         onClick={() => this.props.logout()}>
@@ -142,16 +143,41 @@ class ProfileComponent extends React.Component {
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Date Created</th>
-                    <th scope="col"></th>
+                    <th scope="col">Replay</th>
+                    <th scope="col">Delete</th>
                   </tr>
                   </thead>
                   {this.props.gameList &&
                   <tbody>
                   {this.props.gameList.map(game =>
-                    <tr>
-                      <th scope="row">{game.id}</th>
-                      <td>{game.name}</td>
-                      <td><Link className="play-again" to={`/play/${game.id}`}>Play Me Again!</Link></td>
+                    <tr key={game.id}>
+                      <th className='align-middle' scope="row">{game.id}</th>
+                      <td className='align-middle'>{game.name}</td>
+                      <td className='align-middle'><Link className="play-again" to={`/play/${game.id}`}>Play Me
+                                                                                                        Again!</Link>
+                      </td>
+                      <td>
+                        {this.state.deletingGame !== game.id &&
+                        <button
+                          className='btn m-0 btn-outline-light'
+                          onClick={
+                            () => this.setState({deletingGame: game.id})}>Delete Me Forever</button>
+                        }
+                        {this.state.deletingGame === game.id &&
+                        <div>
+                          <button
+                            className='btn m-0 btn-outline-light'
+                            onClick={() => {
+                              this.props.deleteGame(game.id)
+                              this.setState({deletingGame: ''})
+                            }}>Do it.
+                          </button>
+                          <button className='btn m-0 ml-1 btn-outline-light'
+                                  onClick={() => this.setState({deletingGame: ''})
+                                  }>Cancel
+                          </button>
+                        </div>}
+                      </td>
                     </tr>
                   )}
                   </tbody>
@@ -176,9 +202,9 @@ const dispatchToPropertyMapper = (dispatch) => ({
   findProfile: () =>
     UserService.findProfile()
       .catch(e =>
-      dispatch({
-        type: "LOGOUT"
-      }))
+        dispatch({
+          type: "LOGOUT"
+        }))
       .then(user =>
         dispatch({
           type: "LOGIN",
@@ -204,7 +230,16 @@ const dispatchToPropertyMapper = (dispatch) => ({
       .then(shallowGames => dispatch({
         type: "SET_USER_GAMES",
         games: shallowGames
-      }))
+      })),
+
+  deleteGame: (gameId) =>
+    GameService.deleteGame(gameId)
+      .then(
+        dispatch({
+          type: "DELETE_GAME",
+          gameId
+        })
+      )
 
 })
 

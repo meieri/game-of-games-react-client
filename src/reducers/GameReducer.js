@@ -39,6 +39,11 @@ const gameReducer = (state = initialState, event) => {
         inPlay: false,
         winner: event.winner
       }
+    case "DELETE_GAME":
+      return {
+        ...state,
+        userGames: state.userGames.filter(game => game.id !== event.gameId)
+      }
     default:
       return state
   }
