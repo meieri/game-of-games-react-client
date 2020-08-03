@@ -1,14 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Project Requirements and Outline
 [Game of Games Outline](https://docs.google.com/document/d/1EZEcejj0oLC5dcbhNOAcwCLefapvezCwE0_WYkXPYko/edit)<br/>
-[Trello Board where we really get it done](https://trello.com/b/TLPQQL9s/game-of-games)<br/>
-[Project Requirements](https://docs.google.com/document/d/1jRI156IdPbwpjv9eQDhlIh7sF8jMBGV6jbQsDYEHlN0/edit?usp=sharing)
-[Server Lives Here](https://github.com/meieri/game-of-games-server.git)
+"This is the implementation of a game idea I had with my friends during quarantine. The original idea was a jeopardy game board, but under every tile was a different type of party game. It evolved into an idea where all of the players submit different answers for every tile, and then the answers are selected either at random or by the host to create a game board. All answers should be under 1 of 5 categories: the categories are predetermined right now (Pictionary, Physical, Art, Trivia, Categories). In the long run it should be possible to add categories and customize the game in that aspect as well. It also would work as a group icebreaker."
 
-
-
-
+[java Server Repository](https://github.com/meieri/game-of-games-server.git)
+[Trello Board](https://trello.com/b/TLPQQL9s/game-of-games)<br/>
 
 ## Useful Scripts
 
